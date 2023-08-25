@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ColorListDataBinding</string>
+    <string name="colorList">Color List</string>
+</resources>
