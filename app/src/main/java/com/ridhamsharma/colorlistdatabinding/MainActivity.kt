@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         editor = colorSharedPref.edit()
         binding.mainActivity = this
     }
-    fun onFabClick(){
+    fun onFabClock(){
         var dialog = Dialog(this)
         var dialogBinding =CustomfabBinding.inflate(layoutInflater)
         dialog.setContentView(dialogBinding.root)
@@ -33,13 +33,11 @@ class MainActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        fun add(){
 
         }
     }
 
 
-}
 
 
 
