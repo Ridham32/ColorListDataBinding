@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         editor = colorSharedPref.edit()
         binding.mainActivity = this
     }
-    fun onFabClock(){
+    fun onFabClick(){
         var dialog = Dialog(this)
         var dialogBinding =CustomfabBinding.inflate(layoutInflater)
         dialog.setContentView(dialogBinding.root)
