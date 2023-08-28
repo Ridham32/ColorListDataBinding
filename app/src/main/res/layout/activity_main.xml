@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="sharedPrefs"
-            type="com.ridhamsharma.colorlistdatabinding.ColorSharedPref" />
+            name="mainActivity"
+            type="com.ridhamsharma.colorlistdatabinding.MainActivity" />
+        <import type="android.view.View"/>
+
     </data>
 
 
@@ -38,7 +40,8 @@
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{() -> sharedPrefs.onFabClick()}"/>
+            android:onClick="@{()-> mainActivity.onFabClick()}"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
