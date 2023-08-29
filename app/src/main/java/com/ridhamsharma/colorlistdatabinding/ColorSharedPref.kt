@@ -4,28 +4,37 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class ColorSharedPref {
-     var sharedPref: SharedPreferences?= null
-    var editor: SharedPreferences.Editor?= null
+    var sharedPref: SharedPreferences? = null
+    var editor: SharedPreferences.Editor? = null
 
-    fun initPrefs(context: Context){
-        if(sharedPref == null){
+
+    fun initPrefs(context: Context) {
+        if (sharedPref == null) {
             sharedPref = context.getSharedPreferences(
                 context.resources.getString(R.string.app_name),
-                Context.MODE_PRIVATE)
+                Context.MODE_PRIVATE
+            )
             editor = sharedPref?.edit()
         }
     }
-    fun saveString(key: String, value:String){
+
+    fun saveString(key: String, value: String) {
         editor?.putString(key, value)
         editor?.commit()
+        editor?.apply()
     }
 
-    fun clearPrefs(){
+    fun getString(key: String): String {
+        return sharedPref?.getString(key, "") ?: ""
+
+
+    }
+
+
+    fun clearPrefs() {
         editor?.clear()
         editor?.commit()
     }
-
-
 
 
 }

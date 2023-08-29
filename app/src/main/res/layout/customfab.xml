@@ -27,15 +27,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/etColor1"
             android:hint="Color 1"
+            android:focusable="false"
+            android:onClick="@{()->mainActivityCustom.onColorPick()}"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleCustomFab"
-            app:layout_constraintStart_toStartOf="parent"
-
-/>
+            app:layout_constraintStart_toStartOf="parent" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etColor2"
             android:hint="Color 2"
+            android:onClick="@{()->mainActivityCustom.onColorPick()}"
+            android:focusable="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etColor1"/>
         <EditText
@@ -53,8 +55,8 @@
             app:layout_constraintTop_toBottomOf="@+id/etListCount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{() -> mainActivityCustom.add"
-            />
+
+/>
 
 
 
