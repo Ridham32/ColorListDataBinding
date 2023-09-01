@@ -17,9 +17,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var colorSharedPref: SharedPreferences
     lateinit var editor: Editor
-
-    //     lateinit var dialog: CustomfabBinding
-    lateinit var colorValue: String
+    var colorValue: String = ""
+    lateinit var dialog: Dialog
+    lateinit var dialogBinding: CustomfabBinding
+    var color1 : String = ""
+    var color2 :String =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +32,12 @@ class MainActivity : AppCompatActivity() {
         editor = colorSharedPref.edit()
         binding.mainActivity = this
 
+
     }
 
     fun onFabClick() {
-        var dialog = Dialog(this)
-        var dialogBinding = CustomfabBinding.inflate(layoutInflater)
+        dialog = Dialog(this)
+        dialogBinding = CustomfabBinding.inflate(layoutInflater)
         dialog.setContentView(dialogBinding.root)
         dialog.getWindow()?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -42,13 +45,35 @@ class MainActivity : AppCompatActivity() {
         )
         dialogBinding.mainActivityCustom = this
         dialogBinding.etColor1.setText(colorValue)
+        dialogBinding.etColor2.setText(colorValue)
+        dialogBinding.btnCustomAdd.setOnClickListener {
+            if (dialogBinding.etColor1.text.isNullOrEmpty()) {
+                dialogBinding.etColor1.error = "Choose the color"
+            } else if (dialogBinding.etColor1.text.isNullOrEmpty()) {
+                dialogBinding.etColor2.error = "Choose the color"
+            } else if (dialogBinding.etListCount.text.isNullOrEmpty()) {
+                dialogBinding.etListCount.error = "Choose the color"
 
+                //
+            } else {
+                ColorSingleton.sharedPref.saveString(
+                    "color1",
+                    dialogBinding.etColor1.text.toString()
+                )
+                ColorSingleton.sharedPref.saveString(
+                    "color2",
+                    dialogBinding.etColor2.text.toString()
+                )
+                ColorSingleton.sharedPref.saveString(
+                    "color2",
+                    dialogBinding.etListCount.text.toString()
+                )
+                dialog.dismiss()
+            }
+        }
         dialog.show()
-
     }
-
-
-    fun onColorPick() {
+    fun onColorPick(type: Int) {
 
         ColorPickerDialog
             .Builder(this)                        // Pass Activity Instance
@@ -56,8 +81,10 @@ class MainActivity : AppCompatActivity() {
             .setColorShape(ColorShape.SQAURE)   // Default ColorShape.CIRCLE
             .setDefaultColor(R.color.white)     // Pass Default Color
             .setColorListener { color, colorHex ->
-                ColorSingleton.sharedPref.saveString("color", colorHex)
-                colorValue = ColorSingleton.sharedPref.getString("color")
+                if (type == 1)
+                    dialogBinding.color1 = colorHex
+                else
+                    dialogBinding.color2 = colorHex
                 System.out.println("The color getString is.... $colorValue")
                 System.out.println("The color choosed is.... $color")
             }

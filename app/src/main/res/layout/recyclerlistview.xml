@@ -8,10 +8,19 @@
             type="String" />
     </data>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ListItemView"
+            android:background="@{backroundColor}"
+            android:text="colored list"
+
+            />
 
 
 
@@ -19,7 +28,7 @@
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
 

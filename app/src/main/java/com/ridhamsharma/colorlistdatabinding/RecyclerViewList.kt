@@ -1,4 +1,4 @@
 package com.ridhamsharma.colorlistdatabinding
 
-class ListAdapter {
+class RecyclerViewList {
 }

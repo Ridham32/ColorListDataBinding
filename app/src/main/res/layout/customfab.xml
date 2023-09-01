@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="mainActivityCustom"
             type="com.ridhamsharma.colorlistdatabinding.MainActivity" />
+        <variable
+            name="color1"
+            type="String" />
+        <variable
+            name="color2"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
+            android:id="@+id/tvTitleCustomFab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTitleCustomFab"
             android:text="@string/customtitle"
             android:textAlignment="center"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/etColor1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
             android:hint="Color 1"
-            android:focusable="false"
-            android:onClick="@{()->mainActivityCustom.onColorPick()}"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleCustomFab"
-            app:layout_constraintStart_toStartOf="parent" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etColor2"
-            android:hint="Color 2"
-            android:onClick="@{()->mainActivityCustom.onColorPick()}"
-            android:focusable="false"
+            android:text="@{color1}"
+            android:onClick="@{()->mainActivityCustom.onColorPick(1)}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etColor1"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleCustomFab" />
+
         <EditText
+            android:id="@+id/etColor2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
+            android:text="@{color2}"
+            android:hint="Color 2"
+            android:onClick="@{()->mainActivityCustom.onColorPick(2)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etColor1" />
+
+        <EditText
             android:id="@+id/etListCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Count of list you want to add"
-            app:layout_constraintTop_toBottomOf="@+id/etColor2"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etColor2" />
+
         <Button
+            android:id="@+id/btnCustomAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnCustomAdd"
             android:text="@string/addbtn"
-            app:layout_constraintTop_toBottomOf="@+id/etListCount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etListCount"
 
-/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </layout>
