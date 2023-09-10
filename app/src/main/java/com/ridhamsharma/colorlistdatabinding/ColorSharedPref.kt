@@ -30,11 +30,23 @@ class ColorSharedPref {
 
     }
 
-
-    fun clearPrefs() {
-        editor?.clear()
+    fun saveInt(key: String, value: Int) {
+        editor?.putInt(key, value)
         editor?.commit()
+        editor?.apply()
     }
+
+    fun getInt(key: String): Int {
+        return sharedPref?.getInt(key, 0) ?: 0
+
+
+    }
+
+
+//    fun clearPrefs() {
+//        editor?.clear()
+//        editor?.commit()
+//    }
 
 
 }

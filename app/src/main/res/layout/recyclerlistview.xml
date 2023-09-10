@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="backroundColor"
             type="String" />
@@ -10,26 +11,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tvrecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ListItemView"
-            android:background="@{backroundColor}"
-            android:text="colored list"
-
-            />
-
-
-
-
-
+            android:hint="color here"/>
 
 
     </LinearLayout>
-
 
 
 </layout>

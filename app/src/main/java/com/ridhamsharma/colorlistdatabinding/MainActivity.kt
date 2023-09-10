@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.ridhamsharma.colorlistdatabinding.databinding.ActivityMainBinding
@@ -15,24 +16,29 @@ import com.ridhamsharma.colorlistdatabinding.databinding.CustomfabBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var colorSharedPref: SharedPreferences
-    lateinit var editor: Editor
+  //  lateinit var colorSharedPref: SharedPreferences
+    //lateinit var editor: Editor
+    var itemCount : Int = 0
     var colorValue: String = ""
     lateinit var dialog: Dialog
+    lateinit var layoutManager : LinearLayoutManager
+    var adapter : RecyclerColorView?=null
     lateinit var dialogBinding: CustomfabBinding
     var color1 : String = ""
-    var color2 :String =""
+    var color2 :String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         ColorSingleton.sharedPref.initPrefs(this)
-        colorSharedPref =
-            getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE)
-        editor = colorSharedPref.edit()
+        getColor()
+        layoutManager = LinearLayoutManager(this)
+        adapter = RecyclerColorView(itemCount,color1,color2)
+        binding.recyclerListView.layoutManager = layoutManager
+        binding.recyclerListView.adapter = adapter
+      //  colorSharedPref = getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE)
+       // editor = colorSharedPref.edit()
         binding.mainActivity = this
-
-
     }
 
     fun onFabClick() {
@@ -57,18 +63,21 @@ class MainActivity : AppCompatActivity() {
                 //
             } else {
                 ColorSingleton.sharedPref.saveString(
-                    "color1",
+                   AppConstants.color,
                     dialogBinding.etColor1.text.toString()
                 )
                 ColorSingleton.sharedPref.saveString(
-                    "color2",
+                    AppConstants.color2,
                     dialogBinding.etColor2.text.toString()
                 )
-                ColorSingleton.sharedPref.saveString(
-                    "color2",
-                    dialogBinding.etListCount.text.toString()
+                ColorSingleton.sharedPref.saveInt(
+                    AppConstants.number,
+                    dialogBinding.etListCount.text.toString().toInt()
                 )
                 dialog.dismiss()
+                getColor()
+                adapter?.notifyDataSetChanged()
+
             }
         }
         dialog.show()
@@ -92,6 +101,12 @@ class MainActivity : AppCompatActivity() {
 
             .show()
     }
+
+fun getColor(){
+    itemCount = ColorSingleton.sharedPref.getInt(AppConstants.number)
+    color1 = ColorSingleton.sharedPref.getString(AppConstants.color)
+    color2 = ColorSingleton.sharedPref.getString(AppConstants.color2)
+}
 
 
 }

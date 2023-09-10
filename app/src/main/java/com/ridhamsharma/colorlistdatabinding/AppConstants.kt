@@ -1,9 +1,10 @@
 package com.ridhamsharma.colorlistdatabinding
 
-import android.graphics.Color
 
 class AppConstants {
     companion object{
-        var color : Int ?= null
+        var color : String = "colo1"
+        var color2 : String = "colo2"
+        var number : String = "number"
     }
 }
