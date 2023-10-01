@@ -7,7 +7,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerColorView(var itemCount1 : Int, var color1:String,var color2: String) : RecyclerView.Adapter<RecyclerColorView.ViewHolder>() {
+class RecyclerColorView() : RecyclerView.Adapter<RecyclerColorView.ViewHolder>() {
+    var itemCount1 : Int = 0
+    var color1:String = "#ffff00"
+    var color2: String = "#ffd000"
+    fun updateView( itemCount1 : Int,  color1:String,color2: String){
+        this.color1 = color1
+        this.color2 = color2
+        this.itemCount1 = itemCount1
+        notifyDataSetChanged()
+    }
     class ViewHolder( view : View) : RecyclerView.ViewHolder(view) {
         var tvrecyclerView = view.findViewById<TextView>(R.id.tvrecyclerView)
 
@@ -31,5 +40,7 @@ class RecyclerColorView(var itemCount1 : Int, var color1:String,var color2: Stri
         }else{
             holder.tvrecyclerView.setBackgroundColor(Color.parseColor(color2))
         }
+
+
     }
 }

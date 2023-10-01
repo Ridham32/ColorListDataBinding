@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         ColorSingleton.sharedPref.initPrefs(this)
         getColor()
         layoutManager = LinearLayoutManager(this)
-        adapter = RecyclerColorView(itemCount,color1,color2)
+        adapter = RecyclerColorView()
+        adapter?.updateView(color1 = color1, color2 = color2, itemCount1 = itemCount)
         binding.recyclerListView.layoutManager = layoutManager
         binding.recyclerListView.adapter = adapter
       //  colorSharedPref = getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE)
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 dialog.dismiss()
                 getColor()
+                adapter?.updateView(color1 = color1, color2 = color2, itemCount1 = itemCount)
                 adapter?.notifyDataSetChanged()
 
             }
@@ -107,6 +109,16 @@ fun getColor(){
     color1 = ColorSingleton.sharedPref.getString(AppConstants.color)
     color2 = ColorSingleton.sharedPref.getString(AppConstants.color2)
 }
+
+    fun onDeleteClick(position : Int){
+        ColorSingleton.sharedPref.clearPrefs()
+        itemCount--
+        adapter?.updateView(color1 = color1, color2 = color2, itemCount1 = itemCount)
+        adapter?.notifyDataSetChanged()
+
+    }
+
+
 
 
 }

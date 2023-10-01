@@ -43,10 +43,11 @@ class ColorSharedPref {
     }
 
 
-//    fun clearPrefs() {
-//        editor?.clear()
-//        editor?.commit()
-//    }
+    fun clearPrefs() {
+        editor?.clear()
+        editor?.commit()
+        editor?.apply()
+    }
 
 
 }

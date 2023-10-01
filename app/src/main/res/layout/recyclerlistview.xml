@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+   >
 
     <data>
 
         <variable
             name="backroundColor"
             type="String" />
+        <variable
+            name="mainActivity"
+            type="com.ridhamsharma.colorlistdatabinding.MainActivity" />
+        <variable
+            name="position"
+            type="Integer" />
     </data>
 
     <LinearLayout
@@ -19,7 +25,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="color here"/>
-
+<ImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/btnDelete"
+    android:src="@drawable/ic_delete"
+    android:layout_gravity="right"
+    android:onClick="@{()-> mainActivity.onDeleteClick(position)}"/>
 
     </LinearLayout>
 
